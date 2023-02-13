@@ -32,6 +32,7 @@ const Products = () => {
         {products.map(product => (
           <ProductItem
             key={product._id}
+            categoryTitle={product.category?.title}
             title={product.title}
             price={product.price}
             id={product._id}

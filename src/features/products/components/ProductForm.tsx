@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
-import { Button, Grid, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, Grid, MenuItem, TextField } from '@mui/material';
 import { ProductMutation } from '../../../types';
 import FileInput from '../../../components/UI/FileInput/FileInput';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectCategories } from '../../categories/categoriesSlice';
+import { fetchCategories } from '../../categories/categoriesThunks';
 
 interface Props {
   onSubmit: (mutation: ProductMutation) => void;
 }
 
 const ProductForm: React.FC<Props> = ({onSubmit}) => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(selectCategories);
   const [state, setState] = useState<ProductMutation>({
+    category: '',
     title: '',
     price: '',
     description: '',
     image: null,
   });
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const submitFormHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,10 +52,27 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
       <Grid container direction="column" spacing={2}>
         <Grid item xs>
           <TextField
+            select
+            label="Category"
+            name="category"
+            value={state.category}
+            onChange={inputChangeHandler}
+            required
+          >
+            <MenuItem value="" disabled>Please select a category</MenuItem>
+            {categories.map(category => (
+              <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
+        <Grid item xs>
+          <TextField
             id="title" label="Title"
             value={state.title}
             onChange={inputChangeHandler}
             name="title"
+            required
           />
         </Grid>
 
@@ -55,6 +82,7 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
             value={state.price}
             onChange={inputChangeHandler}
             name="price"
+            required
           />
         </Grid>
 

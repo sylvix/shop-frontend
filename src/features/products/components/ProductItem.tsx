@@ -11,13 +11,14 @@ const ImageCardMedia = styled(CardMedia)({
 });
 
 interface Props {
+  categoryTitle: string;
   title: string;
   price: number;
   id: string;
   image: string | null;
 }
 
-const ProductItem: React.FC<Props> = ({title, price, id, image}) => {
+const ProductItem: React.FC<Props> = ({categoryTitle, title, price, id, image}) => {
   let cardImage = noImageAvailable;
 
   if (image) {
@@ -30,6 +31,9 @@ const ProductItem: React.FC<Props> = ({title, price, id, image}) => {
         <CardHeader title={title}/>
         <ImageCardMedia image={cardImage} title={title}/>
         <CardContent>
+          <p>
+            <strong>Category:</strong> {categoryTitle}
+          </p>
           <strong>
             Price: {price} KGS
           </strong>
