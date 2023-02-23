@@ -101,6 +101,7 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
             label="Image"
             onChange={fileInputChangeHandler}
             name="image"
+            type="image/*"
           />
         </Grid>
 

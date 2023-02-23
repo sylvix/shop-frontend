@@ -5,9 +5,10 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   label: string;
+  type?: string;
 }
 
-const FileInput: React.FC<Props> = ({onChange, name, label}) => {
+const FileInput: React.FC<Props> = ({onChange, name, label, type}) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [filename, setFilename] = useState('');
@@ -33,6 +34,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label}) => {
       <input
         style={{display: 'none'}}
         type="file"
+        accept={type}
         name={name}
         onChange={onFileChange}
         ref={inputRef}
