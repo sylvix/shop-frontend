@@ -5,6 +5,7 @@ import AppToolbar from './components/UI/AppToolbar/AppToolbar';
 import Products from './features/products/Products';
 import NewProduct from './features/products/NewProduct';
 import Register from './features/users/Register';
+import Login from './features/users/Login';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/" element={<Products/>} />
             <Route path="/products/new" element={<NewProduct/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </Container>
       </main>
