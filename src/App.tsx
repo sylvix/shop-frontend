@@ -15,25 +15,28 @@ const App = () => {
 
   return (
     <>
-      <CssBaseline/>
+      <CssBaseline />
       <header>
-        <AppToolbar/>
+        <AppToolbar />
       </header>
       <main>
         <Container maxWidth="xl">
           <Routes>
-            <Route path="/" element={<Products/>} />
-            <Route path="/products/new" element={(
-              <ProtectedRoute isAllowed={user && user.role === 'admin'}>
-                <NewProduct/>
-              </ProtectedRoute>
-            )} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} />
+            <Route path="/" element={<Products />} />
+            <Route
+              path="/products/new"
+              element={
+                <ProtectedRoute isAllowed={user && user.role === 'admin'}>
+                  <NewProduct />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Container>
       </main>
     </>
   );
-}
+};
 export default App;

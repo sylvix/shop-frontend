@@ -10,7 +10,7 @@ interface Props {
   onSubmit: (mutation: ProductMutation) => void;
 }
 
-const ProductForm: React.FC<Props> = ({onSubmit}) => {
+const ProductForm: React.FC<Props> = ({ onSubmit }) => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
   const [state, setState] = useState<ProductMutation>({
@@ -31,24 +31,22 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    const { name, value } = e.target;
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
   const fileInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, files} = e.target;
-    setState(prevState => ({
-      ...prevState, [name]: files && files[0] ? files[0] : null,
+    const { name, files } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: files && files[0] ? files[0] : null,
     }));
   };
 
   return (
-    <form
-      autoComplete="off"
-      onSubmit={submitFormHandler}
-    >
+    <form autoComplete="off" onSubmit={submitFormHandler}>
       <Grid container direction="column" spacing={2}>
         <Grid item xs>
           <TextField
@@ -59,37 +57,31 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
             onChange={inputChangeHandler}
             required
           >
-            <MenuItem value="" disabled>Please select a category</MenuItem>
-            {categories.map(category => (
-              <MenuItem key={category._id} value={category._id}>{category.title}</MenuItem>
+            <MenuItem value="" disabled>
+              Please select a category
+            </MenuItem>
+            {categories.map((category) => (
+              <MenuItem key={category._id} value={category._id}>
+                {category.title}
+              </MenuItem>
             ))}
           </TextField>
         </Grid>
 
         <Grid item xs>
-          <TextField
-            id="title" label="Title"
-            value={state.title}
-            onChange={inputChangeHandler}
-            name="title"
-            required
-          />
+          <TextField id="title" label="Title" value={state.title} onChange={inputChangeHandler} name="title" required />
+        </Grid>
+
+        <Grid item xs>
+          <TextField id="price" label="Price" value={state.price} onChange={inputChangeHandler} name="price" required />
         </Grid>
 
         <Grid item xs>
           <TextField
-            id="price" label="Price"
-            value={state.price}
-            onChange={inputChangeHandler}
-            name="price"
-            required
-          />
-        </Grid>
-
-        <Grid item xs>
-          <TextField
-            multiline rows={3}
-            id="description" label="Description"
+            multiline
+            rows={3}
+            id="description"
+            label="Description"
             value={state.description}
             onChange={inputChangeHandler}
             name="description"
@@ -97,16 +89,13 @@ const ProductForm: React.FC<Props> = ({onSubmit}) => {
         </Grid>
 
         <Grid item xs>
-          <FileInput
-            label="Image"
-            onChange={fileInputChangeHandler}
-            name="image"
-            type="image/*"
-          />
+          <FileInput label="Image" onChange={fileInputChangeHandler} name="image" type="image/*" />
         </Grid>
 
         <Grid item xs>
-          <Button type="submit" color="primary" variant="contained">Create</Button>
+          <Button type="submit" color="primary" variant="contained">
+            Create
+          </Button>
         </Grid>
       </Grid>
     </form>

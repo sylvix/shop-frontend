@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 import ProductForm from './components/ProductForm';
 import { useAppDispatch } from '../../app/hooks';
@@ -20,8 +21,10 @@ const NewProduct = () => {
 
   return (
     <>
-      <Typography variant="h4" sx={{mb: 2}}>New product</Typography>
-      <ProductForm onSubmit={onFormSubmit}/>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        New product
+      </Typography>
+      <ProductForm onSubmit={onFormSubmit} />
     </>
   );
 };

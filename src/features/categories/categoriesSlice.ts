@@ -18,15 +18,18 @@ export const categoriesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCategories.pending, (state) => {
-      state.fetching = true;
-    }).addCase(fetchCategories.fulfilled, (state, {payload: categories}) => {
-      state.fetching = false;
-      state.items = categories;
-    }).addCase(fetchCategories.rejected, (state) => {
-      state.fetching = false;
-    });
-  }
+    builder
+      .addCase(fetchCategories.pending, (state) => {
+        state.fetching = true;
+      })
+      .addCase(fetchCategories.fulfilled, (state, { payload: categories }) => {
+        state.fetching = false;
+        state.items = categories;
+      })
+      .addCase(fetchCategories.rejected, (state) => {
+        state.fetching = false;
+      });
+  },
 });
 
 export const categoriesReducer = categoriesSlice.reducer;

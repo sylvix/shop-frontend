@@ -18,7 +18,7 @@ interface Props {
   image: string | null;
 }
 
-const ProductItem: React.FC<Props> = ({categoryTitle, title, price, id, image}) => {
+const ProductItem: React.FC<Props> = ({ categoryTitle, title, price, id, image }) => {
   let cardImage = noImageAvailable;
 
   if (image) {
@@ -28,19 +28,17 @@ const ProductItem: React.FC<Props> = ({categoryTitle, title, price, id, image}) 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card>
-        <CardHeader title={title}/>
-        <ImageCardMedia image={cardImage} title={title}/>
+        <CardHeader title={title} />
+        <ImageCardMedia image={cardImage} title={title} />
         <CardContent>
           <p>
             <strong>Category:</strong> {categoryTitle}
           </p>
-          <strong>
-            Price: {price} KGS
-          </strong>
+          <strong>Price: {price} KGS</strong>
         </CardContent>
         <CardActions>
           <IconButton component={Link} to={'/products/' + id}>
-            <ArrowForwardIcon/>
+            <ArrowForwardIcon />
           </IconButton>
         </CardActions>
       </Card>

@@ -23,7 +23,7 @@ export const productsSlice = createSlice({
     builder.addCase(fetchProducts.pending, (state) => {
       state.fetchLoading = true;
     });
-    builder.addCase(fetchProducts.fulfilled, (state, {payload: products}) => {
+    builder.addCase(fetchProducts.fulfilled, (state, { payload: products }) => {
       state.fetchLoading = false;
       state.items = products;
     });
@@ -40,7 +40,7 @@ export const productsSlice = createSlice({
     builder.addCase(createProduct.rejected, (state) => {
       state.createLoading = false;
     });
-  }
+  },
 });
 
 export const productsReducer = productsSlice.reducer;

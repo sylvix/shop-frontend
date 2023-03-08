@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -20,9 +21,7 @@ const Products = () => {
     <Grid container direction="column" spacing={2}>
       <Grid item container justifyContent="space-between" alignItems="center">
         <Grid item>
-          <Typography variant="h4">
-            Products
-          </Typography>
+          <Typography variant="h4">Products</Typography>
         </Grid>
         <Grid item>
           {user && user.role === 'admin' && (
@@ -33,7 +32,7 @@ const Products = () => {
         </Grid>
       </Grid>
       <Grid item container spacing={2}>
-        {products.map(product => (
+        {products.map((product) => (
           <ProductItem
             key={product._id}
             categoryTitle={product.category?.title}
@@ -46,6 +45,6 @@ const Products = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Products;
