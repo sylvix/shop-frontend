@@ -5,10 +5,12 @@ import { selectProducts } from './productsSlice';
 import { useEffect } from 'react';
 import { fetchProducts } from './productsThunks';
 import ProductItem from './components/ProductItem';
+import { selectUser } from '../users/usersSlice';
 
 const Products = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProducts);
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -23,9 +25,11 @@ const Products = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="primary" component={Link} to="/products/new">
-            Add product
-          </Button>
+          {user && user.role === 'admin' && (
+            <Button color="primary" component={Link} to="/products/new">
+              Add product
+            </Button>
+          )}
         </Grid>
       </Grid>
       <Grid item container spacing={2}>
